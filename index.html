@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .reset{
+            margin-left: 25px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div> 
+    <script type="text/babel">
+      const app = document.getElementById("app");
+      const root = ReactDOM.createRoot(app);
+     
+      function Tampilan ({nama}){
+        return (
+        <div>
+            <h1> {nama} </h1>
+       </div>
+    );
+}
+function Homepage (){
+
+    const names = ["Nicholas", "Petrus", "Musa"];
+    const [likes, setLikes] = React.useState(0);
+    function handleClick(){
+        setLikes(likes+1);
+    }
+
+    function kuranglike() {
+        setLikes(likes-1);
+    }
+    function resetLike(){
+        setLikes(0);
+    }
+    return(
+    <>
+     <ul>
+      { 
+        names.map((name)=>(
+         <li key={name}>{name}</li>
+        )
+      )
+      }    
+      
+    </ul>
+    <button onClick={kuranglike}>-</button>
+    <button >{likes} Like</button>
+    <button onClick={handleClick}>+</button>
+    <br/>
+    <button className = "reset" onClick={resetLike}>reset</button>
+    </>
+);
+    
+}
+      root.render(<Homepage/>)
+    </script>
+</body>
+</html>
